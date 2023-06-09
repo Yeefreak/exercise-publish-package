@@ -7,7 +7,7 @@ on:
 
 jobs:
   grade-learner:
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'registry_package' # Apply additional filters as needed
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,8 +23,8 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           feedback: ${{ steps.events.outputs.reports }}
-  troubleshoot-activity:
-    if: github.event_name == 'registry_package' # Apply additional filters as needed
+  troubleshoot-activity: 
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - name: troubleshooting steps
